@@ -1,10 +1,9 @@
 from datetime import datetime
+import pandas as pd
 import requests
 import time
 import os
 import json
-import pandas as pd
-
 
 def to_timestamp(date_string):
     return int(datetime.strptime(date_string, "%d-%m-%Y %H:%M").timestamp())
@@ -46,8 +45,8 @@ def progressBar(iterable, prefix = '', suffix = '', decimals = 1, length = 100, 
     print()
 
 if __name__ == '__main__':
-    start = '01-03-2019 00:00'
-    end = '01-09-2020 00:00' #A valid date or None for the current date
+    start = '01-09-2020 00:00'
+    end = None #A valid date or None for the current date
 
     currency_pair = 'BTCUSD'
     pair_sufix = 'inverse'
@@ -56,7 +55,9 @@ if __name__ == '__main__':
 
 
     start_date = to_timestamp(start)
-    end_date = current_timestamp() if end == None else (current_timestamp() if end == None else to_timestamp(end))
+    end_date = current_timestamp() if end == None else to_timestamp(end)
+    if end == None:
+        end = to_utc_date(end_date)
     filename = f'BYBIT-{currency_pair}-{pair_sufix}-{interval}m-data-from-{start.replace(" ", "_")}-to-{end.replace(" ", "_")}.csv'
 
 
