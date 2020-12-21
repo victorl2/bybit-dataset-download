@@ -11,3 +11,7 @@ end = '01-09-2020 00:00' # A valid date or None for the current date
 currency_pair = 'BTCUSD' # Currency pair that will be traded
 interval = 1 # valid values are: 1,3,5,15,30
 ```
+
++ you also need to install the required dependencies running `pip install -r requirements.txt`
+Everything is setup, you can run the code with `python3 src/download.py`
+
